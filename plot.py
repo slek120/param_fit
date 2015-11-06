@@ -23,19 +23,19 @@ def heatmap(params):
     plt.title(str(params))
 
     plt.imshow(Z1, extent=extent)
-    plt.savefig("Ea_heat_"+str(params)+".png")
+    plt.savefig("Ea/heatmaps/"+str(params)+".png")
 
     plt.imshow(Z2, extent=extent)
-    plt.savefig("Eb_heat_"+str(params)+".png")
+    plt.savefig("Eb/heatmaps/"+str(params)+".png")
 
     plt.figure()
     plt.title(str(params))
     CS1 = plt.contour(X, Y, Z1)
     plt.clabel(CS1, inline=1, fontsize=10)
-    plt.savefig("Ea_cont_"+str(params)+".png")
+    plt.savefig("Ea/contours/"+str(params)+".png")
 
     plt.figure()
     plt.title(str(params))
     CS2 = plt.contour(X, Y, Z2)
     plt.clabel(CS2, inline=1, fontsize=10)
-    plt.savefig("Eb_cont_"+str(params)+".png")
+    plt.savefig("Eb/contours/"+str(params)+".png")

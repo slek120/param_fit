@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.optimize import fmin as simplex # Rename fmin to "simplex"
+from scipy.optimize import minimize
 from plot import heatmap
 
 # Array of (x,y) points
@@ -41,27 +41,42 @@ def func(params, X, Y, Err):
         chi2b = chi2b + (Y[n] - Eb)*(Y[n] - Eb)#/(Err[n]*Err[n]) # Uncomment to include error
     return min(chi2a,chi2b)
 
-# Run downhill simplex algorithm
-params = simplex(func, x0, args=(xdata, ydata, sigma))
+# Optimize using one of the methods listed below
+methods = [
+    # 'Newton-CG',
+    # 'dogleg',
+    # 'trust-ncg',
+    'Nelder-Mead',
+    'Powell',
+    'CG',
+    'BFGS',
+    'L-BFGS-B',
+    'TNC',
+    'COBYLA',
+    'SLSQP'
+]
+for i in range(len(methods)):
+    result = minimize(func, x0, args=(xdata, ydata, sigma), method=methods[i])
+    params = result.x
 
-output = "[" + str(params[0]) + ", " \
-             + str(params[1]) + ", " \
-             + str(params[2]) + ", " \
-             + str(params[3]) + ", " \
-             + str(params[4]) + ", " \
-             + str(params[5]) + "]\n"
-with open("data.txt", "a") as f:
-    f.write(output)
+    output = "[" + str(params[0]) + ", " \
+                 + str(params[1]) + ", " \
+                 + str(params[2]) + ", " \
+                 + str(params[3]) + ", " \
+                 + str(params[4]) + ", " \
+                 + str(params[5]) + "]\n"
+    with open("data.txt", "a") as f:
+        f.write(output)
 
-output = "fitt1=" + str(1) + ";\n" + \
-         "fitt2=" + str(params[0]) + ";\n" + \
-         "fitmu=" + str(params[1]) + ";\n" + \
-         "fitx1=" + str(params[2]) + ";\n" + \
-         "fitx2=" + str(params[3]) + ";\n" + \
-         "fitf="  + str(params[4]) + ";\n" + \
-         "fitV="  + str(params[5]) + ";"
-output = output.replace("e","*10^")
-print output
+    output = "fitt1=" + str(1) + ";\n" + \
+             "fitt2=" + str(params[0]) + ";\n" + \
+             "fitmu=" + str(params[1]) + ";\n" + \
+             "fitx1=" + str(params[2]) + ";\n" + \
+             "fitx2=" + str(params[3]) + ";\n" + \
+             "fitf="  + str(params[4]) + ";\n" + \
+             "fitV="  + str(params[5]) + ";"
+    output = output.replace("e","*10^")
+    print output
 
-# Plot energy dispersion
-heatmap(params)
+    # Plot energy dispersion
+    heatmap(params)

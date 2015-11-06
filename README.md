@@ -1,13 +1,13 @@
 # Parameter Fit
 Find parameters for a given fermi surface
 
-# Setup
+## Setup
 If not installed, run
 
     pip install numpy scipy matplotlib
 
 
-# Extract kx and ky values from fermi surface
+## Extract kx and ky values from fermi surface
 
 - Install GraphClicker
 - Open image
@@ -15,13 +15,23 @@ If not installed, run
 - Click on the fermi surface
 - Export to a dat file
 
-# Find a fit
+## Find a fit
 
-- Change the data file in one of the fit_TYPE.py files
-- Set the initial guess
-- Run
+#### brute.py
 
-    python fit_TYPE.py
+Change filename of data file
+
+Set ranges of parameters
+
+    python brute.py
+
+#### minimize.py
+
+Change filename of data file
+
+Set initial guess for parameters
+
+    python minimize.py
 
 # Output
 

@@ -19,11 +19,11 @@ sigma = [1.0 for x in range(len(xdata))]
 
 ranges = (
     slice( 1.0   , 3.0   , 1.0   ),  # t'_min,   t'_max,   t'_step
-    slice( 0.0   , 1.e-2 , 0.2e-3),  # mu_min,   mu_max,   mu_step
-    slice( 0.0   , 1.e-6 , 0.2e-7),  # x0_min,   x0_max,   x0_step
-    slice(-1.e-7 , 0.0   , 0.2e-8),  # x0'_min,  x0'_max,  x0'_step
-    slice(-1.e-6 , 0.0   , 0.2e-7),  # epsf_min, epsf_max, epsf_step
-    slice(-1.e-3 , 0.0   , 0.2e-4)   # V_min,    V_max,    V_step
+    slice( 0.0   , 1.e-2 , 2.5e-3),  # mu_min,   mu_max,   mu_step
+    slice( 0.0   , 1.e-6 , 2.5e-7),  # x0_min,   x0_max,   x0_step
+    slice(-1.e-7 , 0.0   , 2.5e-8),  # x0'_min,  x0'_max,  x0'_step
+    slice(-1.e-6 , 0.0   , 2.5e-7),  # epsf_min, epsf_max, epsf_step
+    slice(-1.e-3 , 0.0   , 2.5e-4)   # V_min,    V_max,    V_step
 )
 
 # Define the objective function to be minimised

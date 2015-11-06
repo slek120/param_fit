@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.optimize import brute
 from scipy.optimize import fmin
-from plot import heatmap
+from plot import plot
 
 # Array of (x,y) points
 xdata = []
@@ -75,4 +75,4 @@ output = output.replace("e","*10^")
 print output
 
 # Plot energy dispersion
-heatmap(params)
+plot(params)

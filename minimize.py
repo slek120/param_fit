@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.optimize import minimize
-from plot import heatmap
+from plot import plot
 
 # Array of (x,y) points
 xdata = []
@@ -55,28 +55,28 @@ methods = [
     'COBYLA',
     'SLSQP'
 ]
-for i in range(len(methods)):
-    result = minimize(func, x0, args=(xdata, ydata, sigma), method=methods[i])
-    params = result.x
 
-    output = "[" + str(params[0]) + ", " \
-                 + str(params[1]) + ", " \
-                 + str(params[2]) + ", " \
-                 + str(params[3]) + ", " \
-                 + str(params[4]) + ", " \
-                 + str(params[5]) + "]\n"
-    with open("data.txt", "a") as f:
-        f.write(output)
+result = minimize(func, x0, args=(xdata, ydata, sigma), method=methods[0])
+params = result.x
 
-    output = "fitt1=" + str(1) + ";\n" + \
-             "fitt2=" + str(params[0]) + ";\n" + \
-             "fitmu=" + str(params[1]) + ";\n" + \
-             "fitx1=" + str(params[2]) + ";\n" + \
-             "fitx2=" + str(params[3]) + ";\n" + \
-             "fitf="  + str(params[4]) + ";\n" + \
-             "fitV="  + str(params[5]) + ";"
-    output = output.replace("e","*10^")
-    print output
+output = "[" + str(params[0]) + ", " \
+             + str(params[1]) + ", " \
+             + str(params[2]) + ", " \
+             + str(params[3]) + ", " \
+             + str(params[4]) + ", " \
+             + str(params[5]) + "]\n"
+with open("data.txt", "a") as f:
+    f.write(output)
 
-    # Plot energy dispersion
-    heatmap(params)
+output = "fitt1=" + str(1) + ";\n" + \
+         "fitt2=" + str(params[0]) + ";\n" + \
+         "fitmu=" + str(params[1]) + ";\n" + \
+         "fitx1=" + str(params[2]) + ";\n" + \
+         "fitx2=" + str(params[3]) + ";\n" + \
+         "fitf="  + str(params[4]) + ";\n" + \
+         "fitV="  + str(params[5]) + ";"
+output = output.replace("e","*10^")
+print output
+
+# Plot energy dispersion
+plot(params)

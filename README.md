@@ -21,8 +21,9 @@ If not installed, run
 - Set the initial guess
 - Run
 
-
+```
     python fit_TYPE.py
+```
 
 # Output
 

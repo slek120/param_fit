@@ -53,7 +53,7 @@ def func(params, X, Y, Err):
     return min(chi2a,chi2b)
 
 # First do a brute force grid optimization and then find local minimum around grid point
-params, chi2, grid, Jout = brute(func, ranges, args=(xdata, ydata, sigma), finish=fmin, full_output=True)
+params, chi2, grid, Jout = brute(func, ranges, args=(xdata, ydata, sigma), finish=fmin, full_output=True, disp=True)
 
 output = "[" + str(params[0]) + ", " \
              + str(params[1]) + ", " \
